@@ -1,0 +1,29 @@
+#navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+#logo {
+  color: tomato;
+  font-size: larger;
+  size: 100px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#navbar Button {
+  color: orange;
+}
+
+#below-appbar {
+  margin-top: 100px;
+}
+
+#add.MuiIconButton-root {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
+#add .MuiSvgIcon-fontSizeLarge {
+  font-size: 50px;
+}

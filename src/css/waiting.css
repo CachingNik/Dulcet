@@ -1,0 +1,4 @@
+div#root .MuiCircularProgress-root {
+  top: 50%;
+  position: absolute;
+}
