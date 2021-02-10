@@ -4,14 +4,15 @@ body {
 
 #card {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
-  align-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 #below-appbar .MuiPaper-rounded {
   border-radius: 0px;
+  border: 1px solid lightgrey;
+  border-width: 0 0 1px 0;
 }
 
 #card button,
@@ -22,6 +23,7 @@ body {
 
 .details * {
   display: block;
+  width: 200px;
 }
 
 .details span {

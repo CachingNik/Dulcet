@@ -17,17 +17,17 @@ function Start() {
     const [ name, setName ] = useState('');
     const [ load, setLoad ] = useState(true);
     const [ uname, setUname ] = useState('');
+    const [ id, setId ] = useState(null);
 
-    const getName = () => {
+    const getDetails = () => {
         let uid = Fire.auth().currentUser.uid;
         Fire.database()
             .ref(`users/${uid}`)
             .on("value", snapshot => {
                 setUname(snapshot.val().username);
+                setId(snapshot.val().count)
+                setLoad(false);
             })
-        setTimeout(() => {
-            setLoad(false);
-        }, 2000);
     }
 
     const login = async () => {
@@ -45,7 +45,6 @@ function Start() {
             setLoad(false);
             return;
         }
-        getName();
         setEmail('');
         setPass('');
     }
@@ -75,7 +74,9 @@ function Start() {
         let uid = Fire.auth().currentUser.uid;
         Fire.database().ref(`users/${uid}`)
             .set({
-                username: name
+                username: name,
+                count: 1,
+                liked: ["dummy"]
             })
         setName('')
     }
@@ -100,14 +101,16 @@ function Start() {
         setName,
         load,
         setLoad,
-        uname
+        uname,
+        id,
+        setId
     }
 
     useEffect(()=>{
         Fire.auth().onAuthStateChanged((user)=>{
             setLoad(true);
             if(user){
-                getName();
+                getDetails();
                 setUser(user);
             } else {
                 setUser(null);

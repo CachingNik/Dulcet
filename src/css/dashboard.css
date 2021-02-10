@@ -27,3 +27,18 @@
 #add .MuiSvgIcon-fontSizeLarge {
   font-size: 50px;
 }
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+img {
+  width: 50px;
+}
+
+#acc-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

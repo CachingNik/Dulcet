@@ -1,0 +1,16 @@
+div.MuiLinearProgress-root {
+  margin: 20px 0 10px 0;
+}
+
+#progress {
+  display: flex;
+  justify-content: space-between;
+}
+
+#progress span {
+  font-size: smaller;
+}
+
+#dialog .MuiDialog-paperWidthSm {
+  max-width: 400px;
+}
