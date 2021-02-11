@@ -4,8 +4,21 @@ body {
   align-items: center;
 }
 
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 1px;
+  font-family: "Raleway", cursive;
+  font-weight: 100;
+  position: relative;
+  background: -webkit-linear-gradient(left, black, #eee, black);
+  background: -moz-linear-gradient(left, black, #eee, black);
+  background: -ms-linear-gradient(left, black, #eee, black);
+  background: -o-linear-gradient(left, black, #eee, black);
+}
+
 form {
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,10 +58,15 @@ form {
   font-size: 100px;
 }
 
-div {
+#ask {
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#cred span {
+#cred #ask .sub-ask {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-style: italic;
+  font-weight: normal;
 }

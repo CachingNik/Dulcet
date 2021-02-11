@@ -28,7 +28,7 @@
   font-size: 50px;
 }
 
-ul {
+ul#sl {
   list-style-type: none;
   padding-inline-start: 0px;
 }
@@ -41,4 +41,16 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#acc-info span {
+  font-weight: normal;
+}
+
+.empty {
+  font-style: italic;
+  font-size: 30px;
+  color: gray;
+  font-weight: lighter;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }

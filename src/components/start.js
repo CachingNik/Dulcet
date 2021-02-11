@@ -18,6 +18,8 @@ function Start() {
     const [ load, setLoad ] = useState(true);
     const [ uname, setUname ] = useState('');
     const [ id, setId ] = useState(null);
+    const [ lerr, setLerr ] = useState(false);
+    const [ rerr, setRerr ] = useState(false);
 
     const getDetails = () => {
         let uid = Fire.auth().currentUser.uid;
@@ -32,6 +34,7 @@ function Start() {
 
     const login = async () => {
         if(email==='' || pass===''){
+            setLerr(true);
             return;
         }
         setLoad(true);
@@ -40,11 +43,13 @@ function Start() {
             .signInWithEmailAndPassword(email, pass);
         } catch(e) {
             console.log(e);
+            setLerr(true);
             setEmail('');
             setPass('');
             setLoad(false);
             return;
         }
+        setLerr(false);
         setEmail('');
         setPass('');
     }
@@ -52,9 +57,11 @@ function Start() {
     const register = async () => {
         if(pass!==cpass){
             console.log("password does not match!!!");
+            setRerr(true);
             return;
         }
         if(name===''){
+            setRerr(true);
             return;
         }
         setLoad(true);
@@ -63,11 +70,13 @@ function Start() {
             .createUserWithEmailAndPassword(email, pass)
         } catch(e) {
             console.log(e);
+            setRerr(true);
             setPass('');
             setCpass('');
             setLoad(false);
             return;
         }
+        setRerr(false);
         setEmail('');
         setPass('');
         setCpass('');
@@ -103,7 +112,11 @@ function Start() {
         setLoad,
         uname,
         id,
-        setId
+        setId,
+        lerr,
+        setLerr,
+        rerr,
+        setRerr
     }
 
     useEffect(()=>{

@@ -6,6 +6,7 @@ import Fire from '../config/fire';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import DoneIcon from '@material-ui/icons/Done';
 import { AuthContext } from './start';
+import Uploaderror from './uploaderror';
 
 function Uploaddialog ({ open, setOpen, setSlist }) {
 
@@ -16,15 +17,22 @@ function Uploaddialog ({ open, setOpen, setSlist }) {
     const [ done, setDone ] = useState(false);
     const [ song, setSong ] = useState('');
     const [ sb, setSb ] = useState('');
+    const [ uerr, setUerr ] = useState(false);
 
     const upload = () => {
         if(song === '' || sb === ''){
+            setUerr(true);
             return;
         }
         let uid = Fire.auth().currentUser.uid
         let file = document.getElementById("input-file").files[0];
         if(!file){
             setNocanc(false);
+            setUerr(true);
+            return;
+        }
+        if(file.size > 20971520 || file.type !== "audio/mpeg"){
+            setUerr(true);
             return;
         }
         setNocanc(true);
@@ -37,6 +45,7 @@ function Uploaddialog ({ open, setOpen, setSlist }) {
                 'singer_band': sb
             }
         }
+        setUerr(false);
         var uploadTask = Fire.storage().ref()
             .child(`audio/${uid}_${id}`).put(file, metadata);
         uploadTask.on(
@@ -45,7 +54,7 @@ function Uploaddialog ({ open, setOpen, setSlist }) {
                 setPro(progress);
             },
             (error) => {
-                console.log(error);
+                setUerr(true);
             },
             async () => {
                 let durl = await uploadTask.snapshot.ref.getDownloadURL();
@@ -69,7 +78,7 @@ function Uploaddialog ({ open, setOpen, setSlist }) {
     return (
         <Dialog open={open} id="dialog" >
             <DialogTitle>
-                Upload your MP3 file
+                Upload your Audio file
             </DialogTitle>
             <DialogContent>
                 <DialogContentText>
@@ -110,6 +119,8 @@ function Uploaddialog ({ open, setOpen, setSlist }) {
                     setTimeout(()=>{
                         setDone(false);
                         setPro(0);
+                        setSong('');
+                        setSb('');
                     }, 300);
                 }}>
                     <DoneIcon />
@@ -120,9 +131,13 @@ function Uploaddialog ({ open, setOpen, setSlist }) {
                     }}>UPLOAD</Button>
                     <Button disabled={nocanc} onClick={()=>{
                         setOpen(false);
+                        setUerr(false);
+                        setSong('');
+                        setSb('');
                     }}>CANCEL</Button>
                 </div> }
             </DialogActions>
+            <Uploaderror uerr={uerr} setUerr={setUerr} />
         </Dialog>
     );
 }

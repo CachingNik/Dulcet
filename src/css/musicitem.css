@@ -19,6 +19,7 @@ body {
 #card .details,
 #card audio {
   margin: 0px 20px 0px 20px;
+  font-weight: bolder;
 }
 
 .details * {

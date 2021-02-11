@@ -70,10 +70,12 @@ function Dashboard() {
             </Toolbar>
         </AppBar>
         <div id="below-appbar">
-            <ul>
+            { slist.length === 0 ? 
+            <span className="empty">Nothing Here, Start Uploading.</span> : 
+            <ul id="sl">
                 { slist.map((item, i) =>  <li key={i}><Musicitem item={item}
                 getList={getList} llist={llist} setLlist={setLlist} /></li> ) }
-            </ul>
+            </ul> }
         </div>
         <IconButton id="add" onClick={()=>{
             setOpen(true);
